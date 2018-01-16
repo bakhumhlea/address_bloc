@@ -6,7 +6,7 @@ class Entry
        @name, @phone_number, @email = name, phone_number, email 
     end
     
-    def to_s
+    def to_string
         "Name: #{name}\nPhone: #{phone_number}\nEmail: #{email}"
     end
     
