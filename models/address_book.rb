@@ -44,4 +44,44 @@ class AddressBook
             add_entry(row_hash["name"], row_hash["phone_number"],row_hash["email"])
         end
     end
+    
+    #This is iterarive search
+    def linear_search(input)
+        
+        search_name = input.downcase.split(' ')
+        search_name.each do |name_el|
+            
+            entries.each do |entry|
+                
+                name_array = entry.name.downcase.split(' ')
+                
+                if name_array.include?(name_el)
+                    return entry
+                end
+            end
+        end
+        return nil
+    end
+    
+    #This is binary search
+    def search_firstname(input)
+        
+        search_name = input.downcase
+        lower = 0
+        upper = entries.length - 1
+        
+        while lower<= upper
+            mid = (upper+lower)/2
+            mid_name_array = entries[mid].name.split(' ').map! { |el| el.downcase }
+            
+            if search_name == mid_name_array[0]
+                return entries[mid]
+            elsif search_name < mid_name_array[0]
+                upper = mid - 1
+            elsif search_name > mid_name_array[0]
+                lower = mid + 1
+            end
+        end
+        return nil
+    end
 end

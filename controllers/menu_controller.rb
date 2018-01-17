@@ -42,7 +42,8 @@ class MenuController
                 read_csv
                 main_menu
             when 0
-                puts "Good-Bye Haha Yo!"
+                system "clear"
+                puts "See you again :D\nGlory Glory Man United!"
                 exit(0)
             else
                 system "clear"
@@ -145,7 +146,7 @@ class MenuController
             else
                 system "clear"
                 puts "Please confirm your entry.."
-                puts "press \"Y\" or \"N\" key and then press Enter!"
+                puts "Press \"Y\" or \"N\" key and then press Enter!"
                 confirm_entry(name,phone,email)
                 
         end
@@ -156,7 +157,10 @@ class MenuController
     end
     
     def read_csv
-        p "Read"
+        system "clear"
+        print "Enter file name to import(file_name.csv): "
+        file_name = gets.chomp
+        address_book.import_from_csv(file_name)
     end
     
     def entry_submenu(entry)

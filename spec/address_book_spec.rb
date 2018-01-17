@@ -113,4 +113,76 @@ RSpec.describe AddressBook do
             check_entry(entry_three, "Nemanja Matic", "555-555-3038", "matic_31@blocmail.com")
         end
     end
+    
+    describe "#linear_search" do
+        it "serches AddressBook for a non-existent entry" do 
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("rooney")
+            expect(entry).to be_nil
+        end
+        
+        it "searches AddressBook for Herrera" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("herrera")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Ander Herrera", "555-555-4854", "herrera_21@blocmail.com")
+        end
+        
+        it "searches AddressBook for Martial" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("martial")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Anthony Martial", "555-555-5415", "martial_11@blocmail.com")
+        end
+        
+        it "searches AddressBook for Mata" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("mata")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Juan Mata", "555-555-3660", "juan_8_mata@blocmail.com")
+        end
+        
+        it "searches AddressBook for Pogba" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("pogba")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Paul Pogba", "555-555-4646", "pogba_6@blocmail.com")
+        end
+        
+        it "searches AddressBook for McTominay" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("mctominay")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Scott McTominay", "555-555-2036", "mctominay_39@blocmail.com")
+        end
+        
+        it "searches AddressBook for Zlatan" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("zlatan")
+            expect(entry).to be_nil
+        end
+        
+        it "searches AddressBook for Anthony Martial" do
+            book.import_from_csv("entries.csv")
+            entry = book.linear_search("Anthony martial")
+            expect(entry).to be_a Entry
+            check_entry(entry, "Anthony Martial", "555-555-5415", "martial_11@blocmail.com")
+        end
+    end
+    
+    describe "#search_firstname" do
+       it "serches AddressBook for Jessie" do
+           book.import_from_csv("entries_2.csv")
+           entry = book.search_firstname("jessie")
+           expect(entry).to be_a Entry
+           check_entry(entry,"Jessie Lingard", "555-555-2038", "lingard_14@blocmail.com")
+       end
+       
+       it "serches AddressBook for Scott" do
+           book.import_from_csv("entries.csv")
+           entry = book.search_firstname("scott")
+           expect(entry).to be_a Entry
+           check_entry(entry,"Scott McTominay", "555-555-2036", "mctominay_39@blocmail.com")
+       end
+    end
 end
